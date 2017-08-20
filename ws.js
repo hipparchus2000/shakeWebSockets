@@ -5,14 +5,15 @@ var clients = [];
 
 'use strict';
 
-const https = require('https');
+//const https = require('https');
+const http = require('http');
 const fs = require('fs');
 
 const WebSocket = require('ws');
 
-const server = https.createServer({
-  cert: fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/fullchain.pem'),
-  key: fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/privkey.pem')
+const server = http.createServer({
+  //cert: fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/fullchain.pem'),
+  //key:  fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/privkey.pem')
 });
 
 const wss = new WebSocket.Server({ server });
@@ -34,7 +35,7 @@ wss.on('connection', function connection (ws) {
 });
 
 server.listen(function listening () {
-	const ws = new WebSocket(`wss://wss.talkisbetter.com:8080`, {
+	const ws = new WebSocket(`ws://127.0.0.1:13003`, {
 		rejectUnauthorized: false
 	});
 
