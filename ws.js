@@ -34,7 +34,7 @@ wss.on('connection', function connection (ws) {
 });
 
 server.listen(function listening () {
-	const ws = new WebSocket(`wss://localhost:8080`, {
+	const ws = new WebSocket(`wss://wss.talkisbetter.com:8080`, {
 		rejectUnauthorized: false
 	});
 
