@@ -1,10 +1,51 @@
-var sys = require("sys"),
-    ws = require("nodejs-websocket");
+var sys = require("sys");
 const si = require('systeminformation');
 
 var clients = [];
 
-ws.createServer(function (websocket) {
+'use strict';
+
+const https = require('https');
+const fs = require('fs');
+
+const WebSocket = require('ws');
+
+const server = https.createServer({
+  cert: fs.readFileSync('/etc/letsencrypt/live/www.talkisbetter.com/fullchain.pem'),
+  key: fs.readFileSync('/etc/letsencrypt/live/www.talkisbetter.com/privkey.pem')
+});
+
+const wss = new WebSocket.Server({ server });
+
+wss.on('connection', function connection (ws) {
+	clients.push(ws);
+	ws.on('message', function message (msg) {
+		console.log(msg);
+	});
+	ws.on('close',function close() {
+		sys.debug("close");
+		for(var i = 0; i < clients.length; i++) {
+			if(clients[i] == websocket) {
+				clients.splice(i);
+				break;
+			}
+		}
+	});
+});
+
+server.listen(function listening () {
+	const ws = new WebSocket(`wss://www.talkisbetter.com:58951`, {
+		rejectUnauthorized: false
+	});
+
+	ws.on('open', function open () {
+		ws.send('All glory to WebSockets!');
+	});
+
+});
+
+
+/* ws.createServer(function (websocket) {
 websocket.addListener("connect", 
 	function (resource) { 
 		sys.debug("connect: " + resource);
@@ -25,7 +66,7 @@ websocket.addListener("connect",
 			}
 		}
 	});
-}).listen(58951);
+}).listen(58951); */
 
 function intervalFunc() {
 	
@@ -39,7 +80,7 @@ function intervalFunc() {
 	si.currentLoad()
 		.then(data => function(data) {
 			for(var i = 0; i < clients.length; i++) {
-				clients[i].write("sysinfo~"+data.currentload);
+				clients[i].send("sysinfo~"+data.currentload);
 			}			
 		})
 		.catch(error => console.error(error));
