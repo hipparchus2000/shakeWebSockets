@@ -1,5 +1,5 @@
 var sys = require("sys"),
-    ws = require("ws");
+    ws = require("nodejs-websocket");
 const si = require('systeminformation');
 
 var clients = [];
