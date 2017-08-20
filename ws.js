@@ -70,7 +70,7 @@ websocket.addListener("connect",
 			}
 		}
 	});
-}).listen(13003); */
+}).listen(13003); 
 
 function intervalFunc() {
 	
