@@ -11,10 +11,10 @@ const fs = require('fs');
 
 const WebSocket = require('ws');
 
-const server = http.createServer({
+const server = http.createServer(/*{
   //cert: fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/fullchain.pem'),
   //key:  fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/privkey.pem')
-});
+}*/);
 
 const wss = new WebSocket.Server({ server });
 
