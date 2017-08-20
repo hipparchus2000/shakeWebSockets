@@ -8,7 +8,7 @@ var clients = [];
 const https = require('https');
 const fs = require('fs');
 
-const WebSocket = require('');
+const WebSocket = require('ws');
 
 const server = https.createServer({
   cert: fs.readFileSync('/etc/letsencrypt/live/www.talkisbetter.com/fullchain.pem'),
