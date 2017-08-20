@@ -8,7 +8,7 @@ var clients = [];
 const https = require('https');
 const fs = require('fs');
 
-const WebSocket = require('ws');
+const WebSocket = require('');
 
 const server = https.createServer({
   cert: fs.readFileSync('/etc/letsencrypt/live/www.talkisbetter.com/fullchain.pem'),
@@ -34,7 +34,7 @@ wss.on('connection', function connection (ws) {
 });
 
 server.listen(function listening () {
-	const ws = new WebSocket(`wss://www.talkisbetter.com:58951`, {
+	const ws = new WebSocket(`wss://www.talkisbetter.com:8080`, {
 		rejectUnauthorized: false
 	});
 
