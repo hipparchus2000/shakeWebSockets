@@ -8,6 +8,7 @@ var clients = [];
 var ws=require("nodejs-websocket");
 
 ws.createServer(function (websocket) {
+	console.log("new connection:"+websocket);
 	clients.push(websocket);
 		
 	conn.on("text", function (str) {
