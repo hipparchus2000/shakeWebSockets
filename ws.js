@@ -36,11 +36,15 @@ function intervalFunc() {
 	
 	console.log("starting interval func");
 	// callback style
-	si.cpu(function(data) {
-		console.log('CPU-Information:');
+	//si.cpu(function(data) {
+	//	console.log('CPU-Information:');
+	//	console.log(data);
+	//});
+	
+	si.currentLoad(function(data) {
+		console.log('CurrentLoad:');
 		console.log(data);
 	});
-	
 	
 	// promises style - new in version 3
 	si.currentLoad()
