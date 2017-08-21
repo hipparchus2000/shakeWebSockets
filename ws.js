@@ -10,11 +10,11 @@ var ws=require("nodejs-websocket");
 ws.createServer(function (websocket) {
 	websocket.addListener("connect", 
 		function (resource) { 
-			sys.debug("connect: " + resource);
+			console.log(websocket + " "+resource);
 			clients.push(websocket);
 			// setTimeout(websocket.end, 10 * 1000); 
 		}).addListener("data", function (data) { 
-			sys.debug(data);
+			console.log(data);
 			
 			for(var i = 0; i < clients.length; i++) {
 				clients[i].write("Hello");
