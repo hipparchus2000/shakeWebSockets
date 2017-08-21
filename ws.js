@@ -52,29 +52,15 @@ setInterval(intervalFunc, 5000);
 function intervalFunc() {
 	
 	console.log("starting interval func");
-	// callback style
-	//si.cpu(function(data) {
-	//	console.log('CPU-Information:');
-	//	console.log(data);
-	//});
 	
 	si.currentLoad(function(data) {
 		console.log("currentload:" + data.currentload);
 		console.log("clients:"+clients.length);
 		for(var i = 0; i < clients.length; i++) {
-			clients[i].sendText("sysinfo~"+data.currentload);
+			clients[i].sendText("sysinfo~CpuLoad:"+data.currentload.toPrecision(2));
 		}			
 	});
-	
-	// promises style - new in version 3
-/*	si.currentLoad()
-		.then(data => function(data) {
-			console.log(data);
-			for(var i = 0; i < clients.length; i++) {
-				clients[i].write("sysinfo~"+data.currentload);
-			}			
-		})
-		.catch(error => console.error(error));*/
+
 }
 
 
