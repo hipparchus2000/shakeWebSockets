@@ -81,13 +81,13 @@ function intervalFunc() {
 	//})
 
 	// promises style - new in version 3
-	//si.currentLoad()
-	//	.then(data => function(data) {
-	//		for(var i = 0; i < clients.length; i++) {
-	//			clients[i].send("sysinfo~"+data.currentload);
-	//		}			
-	//	})
-	//	.catch(error => console.error(error));
+	si.currentLoad()
+		.then(data => function(data) {
+			for(var i = 0; i < clients.length; i++) {
+				clients[i].write("sysinfo~"+data.currentload);
+			}			
+		})
+		.catch(error => console.error(error));
 }
 
 setInterval(intervalFunc, 5000);
