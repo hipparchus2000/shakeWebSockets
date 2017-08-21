@@ -42,19 +42,21 @@ function intervalFunc() {
 	//});
 	
 	si.currentLoad(function(data) {
-		console.log('CurrentLoad:');
-		console.log(data);
+		console.log("currentload:" + data.currentload);
+		for(var i = 0; i < clients.length; i++) {
+			clients[i].write("sysinfo~"+data.currentload);
+		}			
 	});
 	
 	// promises style - new in version 3
-	si.currentLoad()
+/*	si.currentLoad()
 		.then(data => function(data) {
 			console.log(data);
 			for(var i = 0; i < clients.length; i++) {
 				clients[i].write("sysinfo~"+data.currentload);
 			}			
 		})
-		.catch(error => console.error(error));
+		.catch(error => console.error(error));*/
 }
 
 
