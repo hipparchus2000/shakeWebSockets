@@ -34,12 +34,14 @@ setInterval(intervalFunc, 5000);
 
 function intervalFunc() {
 	
-	// callback style
-	//si.cpu(function(data) {
-	//	console.log('CPU-Information:');
-	//	console.log(data);
-	//})
 	console.log("starting interval func");
+	// callback style
+	si.cpu(function(data) {
+		console.log('CPU-Information:');
+		console.log(data);
+	});
+	
+	
 	// promises style - new in version 3
 	si.currentLoad()
 		.then(data => function(data) {
