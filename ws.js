@@ -8,6 +8,16 @@ var clients = [];
 var ws=require("nodejs-websocket");
 
 ws.createServer(function (websocket) {
+	clients.push(websocket);
+		
+	conn.on("text", function (str) {
+        console.log("Received "+str)
+        conn.sendText(str.toUpperCase()+"!!!")
+    })
+    conn.on("close", function (code, reason) {
+        console.log("Connection closed")
+    })
+	
 	websocket.addListener("connect", 
 		function (resource) { 
 			console.log(websocket + " "+resource);
