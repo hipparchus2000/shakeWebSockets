@@ -13,7 +13,7 @@ ws.createServer(function (websocket) {
 		
 	websocket.on("text", function (str) {
         console.log("Received "+str)
-        websocket.sendText(str.toUpperCase()+"!!!")
+        websocket.sendText("sysinfo~"+str.toUpperCase()+"!!!")
     })
     websocket.on("close", function (code, reason) {
         console.log("Connection closed");
@@ -62,7 +62,7 @@ function intervalFunc() {
 		console.log("currentload:" + data.currentload);
 		console.log("clients:"+clients.length);
 		for(var i = 0; i < clients.length; i++) {
-			clients[i].write("sysinfo~"+data.currentload);
+			clients[i].sendText("sysinfo~"+data.currentload);
 		}			
 	});
 	
