@@ -5,48 +5,6 @@ var clients = [];
 
 'use strict';
 
-/*
-const https = require('https');
-const fs = require('fs');
-
-const WebSocket = require('ws');
-
-const server = https.createServer({
-  cert: fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/fullchain.pem'),
-  key:  fs.readFileSync('/etc/letsencrypt/live/wss.talkisbetter.com/privkey.pem')
-});
-
-const wss = new WebSocket.Server({ server });
-
-wss.on('connection', function connection (ws) {
-	clients.push(ws);
-	ws.on('message', function message (msg) {
-		console.log(msg);
-	});
-	ws.on('close',function close() {
-		sys.debug("close");
-		for(var i = 0; i < clients.length; i++) {
-			if(clients[i] == websocket) {
-				clients.splice(i);
-				break;
-			}
-		}
-	});
-});
-
-
-server.listen(function listening () {
-	const ws = new WebSocket(`wss://127.0.0.1:13003`, {
-		rejectUnauthorized: false
-	});
-
-	ws.on('open', function open () {
-		ws.send('All glory to WebSockets!');
-	});
-
-});
-*/
-
 var ws=require("nodejs-websocket");
 
 ws.createServer(function (websocket) {
@@ -80,7 +38,7 @@ function intervalFunc() {
 	//	console.log('CPU-Information:');
 	//	console.log(data);
 	//})
-
+	console.log("starting interval func");
 	// promises style - new in version 3
 	si.currentLoad()
 		.then(data => function(data) {
