@@ -43,6 +43,7 @@ function intervalFunc() {
 	
 	si.currentLoad(function(data) {
 		console.log("currentload:" + data.currentload);
+		console.log("clients:"+clients.length);
 		for(var i = 0; i < clients.length; i++) {
 			clients[i].write("sysinfo~"+data.currentload);
 		}			
