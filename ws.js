@@ -50,6 +50,7 @@ server.listen(function listening () {
 var ws=require("nodejs-websocket");
 
 ws.createServer(function (websocket) {
+	setInterval(intervalFunc, 5000);
 websocket.addListener("connect", 
 	function (resource) { 
 		sys.debug("connect: " + resource);
@@ -90,4 +91,4 @@ function intervalFunc() {
 		.catch(error => console.error(error));
 }
 
-setInterval(intervalFunc, 5000);
+
