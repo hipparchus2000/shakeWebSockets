@@ -11,12 +11,18 @@ ws.createServer(function (websocket) {
 	console.log("new connection:"+websocket);
 	clients.push(websocket);
 		
-	conn.on("text", function (str) {
+	websocket.on("text", function (str) {
         console.log("Received "+str)
         conn.sendText(str.toUpperCase()+"!!!")
     })
-    conn.on("close", function (code, reason) {
-        console.log("Connection closed")
+    websocket.on("close", function (code, reason) {
+        console.log("Connection closed");
+		for(var i = 0; i < clients.length; i++) {
+			if(clients[i] == websocket) {
+				clients.splice(i);
+				break;
+			}
+		}
     })
 	
 	websocket.addListener("connect", 
